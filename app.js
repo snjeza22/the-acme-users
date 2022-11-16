@@ -1,9 +1,23 @@
 let loadButton = document.querySelector('#loadButton');
+let loadRandomButton = document.querySelector('#loadRandomButton');
+console.log(loadRandomButton);
 let list = document.querySelector('#usersList');
+let h1 = document.querySelector('#randomH1');
+console.log(h1);
 
 loadButton.addEventListener('click', function(){
   loadUsers();
 });
+
+loadRandomButton.addEventListener('click', function(){
+  loadRandomUser();
+});
+
+async function loadRandomUser(){
+  let response = await fetch('https://www.acme-api.com/api/users/random');
+  let user = await response.json();
+  randomH1.innerText = user.fullName;
+}
 
 async function loadUsers(){
   let response = await fetch('https://www.acme-api.com/api/users');
